@@ -10,7 +10,7 @@
         <div class="section-body-container">
           <div class="article-info-data">
             <a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-            <small class="article-info-date">{{ post.date_posted|date:"F d, Y" }}</small>
+            <small>{{ post.date_posted|date:"F d, Y" }}</small>
           </div>
           <h2><a class="article-info-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
           <p class="article-info-content">{{ post.content }}</p>

@@ -1,20 +1,26 @@
 {% extends "code_helpers/base.html" %}
 {% block content %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+  <article class="content-section-post-detail">
+    <div class="user-options-container">
+      <img class="user-image" src="{{ object.author.profile.image.url }}">
+      <div class="article-user-info-options">
+        <a class="user-name" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="user-posted-date">{{ object.date_posted|date:"F d, Y" }}</small>
         {% if object.author == user %}
-          <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+          <div class="button-post-container">
+            <div class="button-update-post"]>
+              <a href="{% url 'post-update' object.id %}">Update</a>
+            </div>
+            <div class="button-delete-post">
+              <a href="{% url 'post-delete' object.id %}">Delete</a>
+            </div>
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
+    </div>
+    <div class="post-detail-container">
+      <h2 class="post-detail-title">{{ object.title }}</h2>
+      <p class="post-detail-content">{{ object.content }}</p>
     </div>
   </article>
 {% endblock content %}

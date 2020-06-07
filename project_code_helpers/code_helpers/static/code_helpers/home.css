@@ -101,7 +101,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 40ch;
 }
 
 .page-control {
@@ -123,7 +122,7 @@
     color: #000000;
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 1050px) {
     .article-info-title {
         font-size: 20px;
     }
@@ -137,36 +136,28 @@
         margin-left: 20%;
         margin-right: 20%;
     }
-}
 
-@media screen and (min-width: 950px) {
-    .article-info-title {
-        font-size: 16px;
-    }
-
-    .article-info-content {  
-        font-size: 13px;
-    }
-
-    .section-container {
-        width: 74%;
-        margin-left: 13%;
-        margin-right: 13%;
+    .article-info-content {
+        max-width: 40ch;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1050px) {
     .article-info-title {
         font-size: 13px;
     }
 
     .article-info-content {  
-        font-size: 9px;
+        font-size: 12px;
     }
 
     .section-container {
         width: 86%;
         margin-left: 7%;
         margin-right: 7%;
+    }
+
+    .article-info-content {
+        max-width: 30ch;
     }
 }
