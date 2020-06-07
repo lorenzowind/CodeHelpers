@@ -1,0 +1,42 @@
+{% extends "code_helpers/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="signup">
+        <div class="main-container">
+            <div class="sub-container">
+                <div class="left-container">
+                    
+                {% if request.path == "/signup/" %}
+
+                    <form method="POST" class="signup-form">
+                        {% csrf_token %}
+                        <h1>Sign Up</h1>
+
+                        <div class="inputs">
+                            {{ form|crispy }}
+                        </div>
+
+                        <button type="submit">Create</button>
+                        <h2>Already have an account? <a href="{% url 'signin' %}"><b>Sign in!</b></a></h2>
+                    </form>
+
+                {% else %}
+                    
+                    <div class="logout-control">
+                        <h1>You have been logged out</h1>
+                        <a href="{% url 'signin' %}"><b>Log In Again</b></a>
+                    </div>
+                
+                {% endif %}
+                
+                </div>
+
+                <div class="right-container">
+                    <div class="logo-container">
+                        <img src="../../../media/logo.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

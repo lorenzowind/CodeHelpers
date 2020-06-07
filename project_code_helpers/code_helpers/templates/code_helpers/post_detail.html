@@ -1,26 +1,33 @@
 {% extends "code_helpers/base.html" %}
 {% block content %}
-  <article class="content-section-post-detail">
-    <div class="user-options-container">
-      <img class="user-image" src="{{ object.author.profile.image.url }}">
-      <div class="article-user-info-options">
-        <a class="user-name" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-        <small class="user-posted-date">{{ object.date_posted|date:"F d, Y" }}</small>
-        {% if object.author == user %}
-          <div class="button-post-container">
-            <div class="button-update-post"]>
-              <a href="{% url 'post-update' object.id %}">Update</a>
+  <div class="posts-container">
+    <article class="content-section-post-detail">
+      <div class="user-options-container">
+        <img class="user-image" src="{{ object.author.profile.image.url }}">
+        
+        <div class="article-user-info-options">
+          
+          <a class="user-name" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+          <small class="user-posted-date">{{ object.date_posted|date:"F d, Y" }}</small>
+          
+          {% if object.author == user %}
+            <div class="button-post-container">
+              <div class="button-update-post"]>
+                <a href="{% url 'post-update' object.id %}">Update</a>
+              </div>
+              <div class="button-delete-post">
+                <a href="{% url 'post-delete' object.id %}">Delete</a>
+              </div>
             </div>
-            <div class="button-delete-post">
-              <a href="{% url 'post-delete' object.id %}">Delete</a>
-            </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        
+        </div>
       </div>
-    </div>
-    <div class="post-detail-container">
-      <h2 class="post-detail-title">{{ object.title }}</h2>
-      <p class="post-detail-content">{{ object.content }}</p>
-    </div>
-  </article>
+      <hr>
+      <div class="post-detail-container">
+        <h2 class="post-detail-title">{{ object.title }}</h2>
+        <p class="post-detail-content">{{ object.content }}</p>
+      </div>
+    </article>
+  </div>
 {% endblock content %}

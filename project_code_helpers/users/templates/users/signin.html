@@ -1,0 +1,35 @@
+{% extends "code_helpers/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="signin">
+        <div class="main-container">
+            <div class="sub-container">
+                <div class="left-container">
+
+                    <form method="POST" class="signin-form">
+                        {% csrf_token %}
+                        <h1>Sign In</h1>
+
+                        <div class="inputs">
+                            {{ form|crispy }}
+                        </div>
+                        
+                        <small class="text-muted ml-2">
+                            <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                        </small>
+
+                        <button type="submit">Login</button>
+                        <h2>Don't have an account? <a href="{% url 'signup' %}"><b>Sign up!</b></a></h2>
+                    </form>
+
+                </div>
+
+                <div class="right-container">
+                    <div class="logo-container">
+                        <img src="../../../media/logo.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

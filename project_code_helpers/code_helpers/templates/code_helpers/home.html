@@ -1,57 +1,60 @@
 {% extends "code_helpers/base.html" %}
 {% block content %}
+{% if user.is_authenticated %}
+  <div class="posts-container">
+    <div class="home-posts-container">
 
-  <div class="home-posts-container">
+      {% for post in posts %}
 
-    {% for post in posts %}
-
-      <article class="section-container">
-        <img src="{{ post.author.profile.image.url }}">
-        <div class="section-body-container">
-          <div class="article-info-data">
-            <a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-            <small>{{ post.date_posted|date:"F d, Y" }}</small>
+        <article class="section-container">
+          <img src="{{ post.author.profile.image.url }}">
+          <div class="section-body-container">
+            <div class="article-info-data">
+              <a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+              <small>{{ post.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-info-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            <p class="article-info-content">{{ post.content }}</p>
           </div>
-          <h2><a class="article-info-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-          <p class="article-info-content">{{ post.content }}</p>
-        </div>
-      </article>
+        </article>
 
-      
-    {% empty %}
-      
-      <div class="empty-posts">
-        <img src="../../../media/empty_posts.png">
-        <h1>No posts yet... Come back later!</h1>
-      </div>
-    
-    {% endfor %}
-    
-    {% if is_paginated %}
-
-      <div class="page-control">
         
-        {% if page_obj.has_previous %}
-          <a href="?page=1">First</a>
-          <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+      {% empty %}
+        
+        <div class="empty-posts">
+          <img src="../../../media/empty_posts.png">
+          <h1>No posts yet... Come back later!</h1>
+        </div>
+      
+      {% endfor %}
+      
+      {% if is_paginated %}
 
-        {% for num in page_obj.paginator.page_range %}
-          {% if page_obj.number == num %}
-            <a href="?page={{ num }}">{{ num }}</a>
-          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <a href="?page={{ num }}">{{ num }}</a>
+        <div class="page-control">
+          
+          {% if page_obj.has_previous %}
+            <a href="?page=1">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
           {% endif %}
-        {% endfor %}
 
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}">Next</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
 
-      </div>
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          {% endif %}
 
-    {% endif %}
+        </div>
 
+      {% endif %}
+
+    </div>
   </div>
+{% endif %}
 {% endblock content %}

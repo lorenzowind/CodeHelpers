@@ -71,11 +71,11 @@
   
   @media screen and (max-width: 950px) {
     .left-about-container h1 {
-        font-size: 48px;
+        font-size: 32px;
     }
   
     .left-about-container h2 {  
-        font-size: 32px;
+        font-size: 24px;
     }
 
     .bottom-about-container h3 {

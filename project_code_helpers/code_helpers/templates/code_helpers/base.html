@@ -12,47 +12,43 @@
       <link rel="stylesheet" type="text/css" href="{% static 'code_helpers/user_posts.css' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'code_helpers/post_detail.css' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'code_helpers/post_form.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'code_helpers/signin.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'code_helpers/signup.css' %}">
       
       <title>Code Helpers</title>
   </head>
   <body>
-    <header class="header-container">
-      <nav class="navigation-container">
-        <div class="text-container">
-          <div class="sub-text-container">  
+    {% if user.is_authenticated %}
+      <header class="header-container">
+        <nav class="navigation-container">
+          <div class="text-container">
+            <div class="sub-text-container">  
 
-            <a class="main-text" href="{% url 'code_helpers-home' %}">Code Helpers</a>
-            
-            <div class="left-sub-text">
-              <a href="{% url 'code_helpers-home' %}">Home</a>
-              <a href="{% url 'code_helpers-about' %}">About</a>
-            </div>
+              <a class="main-text" href="{% url 'code_helpers-home' %}">Code Helpers</a>
+              
+              <div class="left-sub-text">
+                <a href="{% url 'code_helpers-home' %}">Home</a>
+                <a href="{% url 'code_helpers-about' %}">About</a>
+              </div>
 
-            <div class="right-sub-text">
-              {% if user.is_authenticated %}
+              <div class="right-sub-text">
                 <a href="{% url 'post-create' %}">New Post</a>
                 <a href="{% url 'profile' %}">Profile</a>
                 <a href="{% url 'logout' %}">Logout</a>
-              {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-              {% endif %}
+              </div>
+
             </div>
-
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+      
+    {% endif %}
 
-  <main class="body-container">
-    <div class="posts-container">
-      <div class="row">
-
-        <div>
-          {% block content %}{% endblock %}
-        </div>
-
+    <main class="body-container">
+      <div>
+        {% block content %}{% endblock %}
       </div>
     </main>
+
   </body>
 </html>

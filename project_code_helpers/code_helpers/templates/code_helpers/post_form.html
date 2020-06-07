@@ -1,34 +1,36 @@
 {% extends "code_helpers/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section-post-form">
-        
-        <form method="POST">
-            {% csrf_token %}
-            <legend class="post-insert-text">
-                {% if request.path == "/post/new/" %}
-                    Create Post
-                {% else %}
-                    Update Post
-                {% endif %}
-            </legend>
-
-            <hr>
+    <div class="posts-container">
+        <div class="content-section-post-form">
             
-            <div class="post-section-inputs">
-                {{ form|crispy }}
-            </div>
-        
-            <div class="post-insert-button">
-                <button type="submit">
-                {% if request.path == "/post/new/" %}
-                    Post
-                {% else %}
-                    Update
-                {% endif %}
-                </button>
-            </div>
-        </form>
+            <form method="POST">
+                {% csrf_token %}
+                <legend class="post-insert-text">
+                    {% if request.path == "/home/post/new/" %}
+                        Create Post
+                    {% else %}
+                        Update Post
+                    {% endif %}
+                </legend>
 
+                <hr>
+                
+                <div class="post-section-inputs">
+                    {{ form|crispy }}
+                </div>
+            
+                <div class="post-insert-button">
+                    <button type="submit">
+                    {% if request.path == "/home/post/new/" %}
+                        Post
+                    {% else %}
+                        Update
+                    {% endif %}
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
 {% endblock content %}

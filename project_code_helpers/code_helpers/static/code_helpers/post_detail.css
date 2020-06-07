@@ -5,16 +5,17 @@
     padding-top: 5%;
 }
 
+.content-section-post-detail hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
 .user-image {
     border-radius: 100%;
 }
 
 .article-user-info-options {
     vertical-align: top;
-}
-
-.post-detail-container {
-    
 }
 
 .user-name {
@@ -42,7 +43,6 @@
 
 .button-post-container {
     padding-top: 24px;
-    padding-bottom: 24px;
 }
 
 .button-update-post {
