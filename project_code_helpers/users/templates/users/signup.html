@@ -1,9 +1,17 @@
 {% extends "code_helpers/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% if not user.is_authenticated %}
     <div class="signup">
         <div class="main-container">
             <div class="sub-container">
+                
+                <div class="right-container">
+                    <div class="logo-container">
+                        <img src="../../../media/logo.png">
+                    </div>
+                </div>
+
                 <div class="left-container">
                     
                 {% if request.path == "/signup/" %}
@@ -30,13 +38,8 @@
                 {% endif %}
                 
                 </div>
-
-                <div class="right-container">
-                    <div class="logo-container">
-                        <img src="../../../media/logo.png">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+{% endif %}
 {% endblock content %}
